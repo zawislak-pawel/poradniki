@@ -1,0 +1,37 @@
+## Docker & WSL
+
+1. Uninstall Docker Desktop on Windows
+1. Run powershell as admin and type: "wsl --install"
+2. Run powershell and type: "wsl --set-default-version 2"
+3. Run powershell and type: "wsl --install --distribution Ubuntu" - or if you've already had Ubuntu on wsl 1 version run in powershell: "wsl --set-version Ubuntu 2" - it will convert your exisitng distribution from wsl v1 to v2
+4. (Optional) To be able not to type password for "sudo" open Windows Start -> Ubuntu and type: "echo "`whoami` ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/`whoami` && sudo chmod 0440 /etc/sudoers.d/`whoami`"
+5. Open Windows Start -> Ubuntu and install Docker Engine on Ubuntu using link: https://docs.docker.com/engine/install/ubuntu/
+6. Open Windows Start -> Ubuntu and type: "sudo apt install net-tools" (needed to have ifconfig which is linux version of ipconfig)
+7. Open Windows Start -> Ubuntu and install Docker Compose on Ubuntu by typing:
+    - "sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose"
+    - "sudo chmod +x /usr/local/bin/docker-compose" (apply executable permissions to the binary downloaded above)
+    - "docker-compose --version" (test if everything is ok)
+8. To be able to run docker without typing "sudo" at the begining open Windows Start -> Ubuntu and type:
+    - "sudo groupadd docker"
+    - "sudo usermod -aG docker $USER"
+    - "newgrp docker"
+9. Run powershell and type: "notepad $PROFILE" then paste below code as content and save file:
+
+Function Start-WslDocker {
+    wsl docker $args
+}
+
+Function Start-WslDockerCompose {
+    wsl docker-compose $args
+}
+
+Set-Alias -Name docker -Value Start-WslDocker
+Set-Alias -Name docker-compose -Value Start-WslDockerCompose
+
+9a. If there is no $PROFILE on your machine you can create it via powershell using: 
+
+if (!(Test-Path -Path $PROFILE)) {
+  New-Item -ItemType File -Path $PROFILE -Force
+}
+
+10. Run a new powershell window and type: "docker run hello-world" to test if everyting works
