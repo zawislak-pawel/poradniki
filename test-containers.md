@@ -43,3 +43,7 @@ To apply environment variables you need restart IDE (in my case is Intellij Idea
 Run on `Ubuntu` command `netstat -nl | grep 2375` -> it should return
 ![image](https://user-images.githubusercontent.com/27007646/177995535-7588b779-9bdf-41b9-9594-447217457d51.png)
 
+
+## Helpful links
+https://github.com/docker/for-win/issues/3546
+https://github.com/microsoft/WSL/issues/4983
