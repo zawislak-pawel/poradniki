@@ -41,4 +41,5 @@ To apply environment variables you need restart IDE (in my case is Intellij Idea
 
 ## Check if port is exposed
 Run on `Ubuntu` command `netstat -nl | grep 2375` -> it should return
-![image](https://user-images.githubusercontent.com/27007646/177995286-427bbcaa-d852-452a-a948-67650c21bdf9.png)
+![image](https://user-images.githubusercontent.com/27007646/177995535-7588b779-9bdf-41b9-9594-447217457d51.png)
+
