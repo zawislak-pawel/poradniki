@@ -38,3 +38,7 @@ DOCKER_CERT_PATH|\\\\wsl$\\home\\$USER_NAME\\.docker
 
 ## Restart IDE
 To apply environment variables you need restart IDE (in my case is Intellij Idea) OR just specify in `Run/Debug Configuration` these env variables directly.
+
+## Check if port is exposed
+Run on `Ubuntu` command `netstat -nl | grep 2375` -> it should return
+![image](https://user-images.githubusercontent.com/27007646/177995286-427bbcaa-d852-452a-a948-67650c21bdf9.png)
